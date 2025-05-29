@@ -12,10 +12,10 @@
   "scripts": {
     "dev:web": "echo 'start web'",
     "dev:func": "netlify dev",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --coverage",
     "test:int": "vitest run tests/integration",
     "test:e2e": "playwright test",
-    "lint": "eslint -c .eslintrc.cjs . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc -b",
     "gen:test": "node scripts/gen-test.js"
   },
