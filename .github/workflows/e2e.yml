@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set base URL
+        run: echo "E2E_BASE_URL=https://example.com" >> $GITHUB_ENV
       - run: npm install
       - run: npm run test:e2e
       - name: Upload coverage
