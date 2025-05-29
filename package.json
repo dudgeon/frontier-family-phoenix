@@ -1,0 +1,30 @@
+{
+  "name": "frontier-family-phoenix",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "functions",
+    "packages/*",
+    "tests"
+  ],
+  "scripts": {
+    "dev:web": "echo 'start web'",
+    "dev:func": "netlify dev",
+    "test:unit": "vitest run",
+    "test:int": "vitest run tests/integration",
+    "test:e2e": "playwright test",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc -b",
+    "gen:test": "node scripts/gen-test.js"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json,md}": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
