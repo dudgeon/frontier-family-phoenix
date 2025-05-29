@@ -1,5 +1,8 @@
-import * as Sentry from 'sentry-expo'
-Sentry.init({ dsn: process.env.SENTRY_DSN })
+import * as Sentry from "sentry-expo";
+import CoreApp from "../app/App";
+
+Sentry.init({ dsn: process.env.SENTRY_DSN });
+
 export default function App() {
-  return null
+  return <CoreApp />;
 }
