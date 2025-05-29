@@ -12,10 +12,10 @@
   "scripts": {
     "dev:web": "echo 'start web'",
     "dev:func": "netlify dev",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --coverage",
     "test:int": "vitest run tests/integration",
     "test:e2e": "playwright test",
-    "lint": "eslint -c .eslintrc.cjs . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc -b",
     "gen:test": "node scripts/gen-test.js"
   },
@@ -35,6 +35,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.1.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-config-prettier": "^9.1.0"
+    "eslint-config-prettier": "^9.1.0",
+    "vitest": "^1.5.0",
+    "@playwright/test": "^1.40.0"
   }
 }
