@@ -1,6 +1,11 @@
 [build]
   command = "npm run build"
   publish = "apps/web/dist"
+  edge_functions = "functions"
+
+[build.environment]
+  SUPABASE_URL = ""
+  SUPABASE_KEY = ""
 
 [[edge_functions]]
   path = "/api/chat"
