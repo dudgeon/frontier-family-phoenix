@@ -34,3 +34,4 @@ Add the following repository secrets:
 - `SUPABASE_ACCESS_TOKEN` – personal access token for the Supabase CLI
 - `NETLIFY_AUTH_TOKEN` – token from Netlify user settings
 - `NETLIFY_SITE_ID` – ID of your Netlify site
+
