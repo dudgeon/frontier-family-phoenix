@@ -25,3 +25,12 @@ Ensure `supabase` CLI is installed. Use `pnpm dlx supabase-gen types typescript 
 - When sending feature PRs include the snippet:
   "Update or create tests in tests/* matching each changed function/component…"
 - Keep coverage at **80% or higher**.
+
+## CI Secrets
+
+The GitHub Actions workflows require tokens to create branch databases and deploy previews.
+Add the following repository secrets:
+
+- `SUPABASE_ACCESS_TOKEN` – personal access token for the Supabase CLI
+- `NETLIFY_AUTH_TOKEN` – token from Netlify user settings
+- `NETLIFY_SITE_ID` – ID of your Netlify site

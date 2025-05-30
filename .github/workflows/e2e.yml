@@ -1,7 +1,7 @@
 name: E2E
 on:
   workflow_run:
-    workflows: ["Test"]
+    workflows: ["Setup Branch DB"]
     types:
       - completed
 
@@ -11,8 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: preview-url
+          run-id: ${{ github.event.workflow_run.id }}
+
       - name: Set base URL
-        run: echo "E2E_BASE_URL=https://example.com" >> $GITHUB_ENV
+        run: echo "E2E_BASE_URL=$(cat preview_url.txt)" >> $GITHUB_ENV
+
       - run: npm install
       - run: npm run test:e2e
       - name: Upload coverage

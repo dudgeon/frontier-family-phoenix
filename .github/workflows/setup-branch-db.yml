@@ -1,22 +1,52 @@
 name: Setup Branch DB
 on:
-  push:
-    branches: ["*"]
+  pull_request:
 
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Init Supabase
-        run: echo "Initializing supabase"
-      - name: Create branch DB
-        run: echo "supabase db branch ${{ github.ref_name }}"
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Login to Supabase
+        run: supabase login --token $SUPABASE_ACCESS_TOKEN
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+      - name: Create branch database
+        run: supabase branch create ${{ github.head_ref }}
+
       - name: Apply migrations
-        run: echo "supabase db push"
-      - name: Seed data
-        run: echo "supabase db execute packages/testing/seed.sql"
-      - name: Export env
-        run: echo "supabase functions env pull"
-      - name: Trigger Netlify preview
-        run: echo "netlify build"
+        run: supabase db push
+
+      - name: Seed database
+        run: supabase db execute tests/seed.sql
+
+      - name: Extract env
+        id: env
+        run: |
+          echo "supabase_url=$(supabase db show-url)" >> "$GITHUB_OUTPUT"
+          echo "supabase_key=$(supabase db show-api-key)" >> "$GITHUB_OUTPUT"
+
+      - name: Build and deploy preview
+        id: deploy
+        uses: netlify/actions/cli@v2
+        with:
+          args: deploy --dir=apps/web/dist --json
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          SUPABASE_URL: ${{ steps.env.outputs.supabase_url }}
+          SUPABASE_KEY: ${{ steps.env.outputs.supabase_key }}
+
+      - name: Save preview url
+        run: echo ${{ steps.deploy.outputs.deploy-url }} > preview_url.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: preview-url
+          path: preview_url.txt
