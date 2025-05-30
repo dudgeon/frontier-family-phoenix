@@ -17,7 +17,9 @@
     "test:e2e": "playwright test",
     "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc -b",
-    "gen:test": "node scripts/gen-test.js"
+    "gen:test": "node scripts/gen-test.js",
+    "web:build": "expo export --platform web --output-dir web-dist",
+    "build": "npm run web:build"
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,md}": "prettier --write"
