@@ -1,12 +1,4 @@
 [build]
-  command = "npm install --no-audit --progress=false && npm run build"
-  publish = "web-dist"
-  edge_functions = "functions"
-
-[build.environment]
-  SUPABASE_URL = ""
-  SUPABASE_KEY = ""
-
-[[edge_functions]]
-  path = "/api/chat"
-  function = "chat"
+  command = "npm install --no-audit --legacy-peer-deps && echo 'hi'"
+  publish = "."
+  edge_functions = "functions"   # keep if you already have a /functions folder; otherwise omit
