@@ -1,4 +1,4 @@
 [build]
   command = "npm install --no-audit --legacy-peer-deps && echo 'hi'"
   publish = "."
-  edge_functions = "functions"   # keep if you already have a /functions folder; otherwise omit
+  # edge_functions = "functions"   # keep if you already have a /functions folder; otherwise omit
