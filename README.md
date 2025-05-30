@@ -29,8 +29,9 @@ Ensure `supabase` CLI is installed. Use `pnpm dlx supabase-gen types typescript 
 ## CI Secrets
 
 The GitHub Actions workflows require tokens to create branch databases and deploy previews.
-Add the following repository secrets:
+Add the following Repository Secrets:
 
 - `SUPABASE_ACCESS_TOKEN` – personal access token for the Supabase CLI
 - `NETLIFY_AUTH_TOKEN` – token from Netlify user settings
 - `NETLIFY_SITE_ID` – ID of your Netlify site
+
