@@ -20,7 +20,7 @@ jobs:
       - name: Set base URL
         run: echo "E2E_BASE_URL=$(cat preview_url.txt)" >> $GITHUB_ENV
 
-      - run: npm install
+      - run: npm ci --legacy-peer-deps
       - run: npm run test:e2e
       - name: Upload coverage
         run: echo "Uploading LCOV"
