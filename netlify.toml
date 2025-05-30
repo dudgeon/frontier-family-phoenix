@@ -1,6 +1,6 @@
 [build]
   command = "npm ci --legacy-peer-deps && npm run build"
-  publish = "apps/app/dist"
+  publish = "web-dist"
   edge_functions = "functions"
 
 [build.environment]
