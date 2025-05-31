@@ -13,7 +13,7 @@
     "dev:web": "echo 'start web'",
     "dev:func": "netlify dev",
     "dev:web": "npm run start -w apps/web",
-    "dev:mobile": "npm run start -w apps/expo"  // safe even if apps/expo not present yet,
+    "dev:mobile": "npm run start -w apps/expo",
     "test:unit": "vitest run --coverage",
     "test:int": "vitest run tests/integration",
     "test:e2e": "playwright test",
