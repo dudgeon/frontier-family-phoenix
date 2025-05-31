@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { handler } from "../../functions/health";
+import { handler } from "../../functions/health/handler";
 
 describe("health function", () => {
   it("returns status 200", async () => {

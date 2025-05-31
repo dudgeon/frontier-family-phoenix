@@ -5,9 +5,8 @@
   "type": "module",
   "workspaces": [
     "apps/*",
-    "functions",
     "packages/*",
-    "tests"
+    "functions/*"
   ],
   "scripts": {
     "dev:web": "echo 'start web'",

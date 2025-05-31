@@ -1,0 +1,6 @@
+{
+  "name": "@frontier/function-chat",
+  "version": "1.0.0",
+  "private": true,
+  "main": "handler.ts"
+}

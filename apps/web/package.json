@@ -1,0 +1,9 @@
+{
+  "name": "@frontier/web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'start web'",
+    "build": "expo export --platform web --output-dir web-dist"
+  }
+}
