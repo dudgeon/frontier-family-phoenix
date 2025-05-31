@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    /* ---------- fundamental ---------- */
+    "target": "ES2021",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "strict": true,
+
+    /* ---------- path aliases ---------- */
+    "baseUrl": ".",
+    "paths": {
+      "@db/*": ["packages/db/src/*"],
+      "@web/*": ["apps/web/src/*"]
+    },
+
+    /* ---------- misc ---------- */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["node_modules", "dist", "coverage"]
+}
