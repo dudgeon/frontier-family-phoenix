@@ -34,11 +34,17 @@ jobs:
           echo "supabase_url=$(supabase db show-url)" >> "$GITHUB_OUTPUT"
           echo "supabase_key=$(supabase db show-api-key)" >> "$GITHUB_OUTPUT"
 
+      - name: Sanitize branch name for Netlify alias
+        id: slug
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          echo "safe=$(echo $BRANCH | tr '/.' '-')" >> $GITHUB_OUTPUT
+
       - name: Build and deploy preview
         id: deploy
         uses: netlify/actions/cli@v2
         with:
-          args: deploy --dir=apps/web/dist --json
+          args: deploy --dir=apps/web/dist --json --alias ${{ steps.slug.outputs.safe }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
