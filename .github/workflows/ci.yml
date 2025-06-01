@@ -12,11 +12,16 @@ jobs:
           node-version: '20'
       - run: mkdir -p dist
       - run: cp apps/web/static/index.html dist/index.html
+      - name: Sanitize branch name for Netlify alias
+        id: slug
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          echo "safe=$(echo $BRANCH | tr '/.' '-')" >> $GITHUB_OUTPUT
       - name: Deploy preview
         id: deploy
         uses: netlify/actions/cli@v2
         with:
-          args: deploy --dir=dist --json
+          args: deploy --dir=dist --json --alias ${{ steps.slug.outputs.safe }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
